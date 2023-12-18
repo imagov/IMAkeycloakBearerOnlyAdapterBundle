@@ -1,0 +1,36 @@
+{
+    "name": "ima/keycloak-bearer-only-adapter-bundle",
+    "description": "Keycloak security adapter for bearer only clients",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Leandro Santos",
+            "email": "leandro.santos@ima.sp.gov.br"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2",
+        "symfony/config": "^7.0",
+        "symfony/dependency-injection": "^7.0",
+        "symfony/http-client": "^7.0",
+        "symfony/http-kernel": "^7.0",
+        "symfony/security-bundle": "^7.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "IMA\\Bundle\\keycloakBearerOnlyAdapterBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IMA\\Bundle\\keycloakBearerOnlyAdapterBundle\\Tests\\": "Tests"
+        }
+    }
+
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Default configuration for services in *this* file -->
+        <defaults autowire="true" autoconfigure="true"/>
+
+        <!-- makes classes available to be used as services -->
+        <!-- this creates a service per class whose id is the fully-qualified class name -->
+        <prototype namespace="IMA\Bundle\keycloakBearerOnlyAdapterBundle\" resource="../../*" exclude="../../{Entity,Migrations,Tests}"/>
+
+        <service id="ima_keycloak_bearer_only_adapter.keycloak_bearer_user_provider" class="IMA\Bundle\keycloakBearerOnlyAdapterBundle\Security\User\KeycloakBearerUserProvider">
+            <argument/>
+            <argument/>
+            <argument/>
+            <argument/>
+            <argument/>
+        </service>
+
+        <service id="IMA\Bundle\keycloakBearerOnlyAdapterBundle\Security\User\KeycloakBearerUserProvider" alias="ima_keycloak_bearer_only_adapter.keycloak_bearer_user_provider" />
+
+    </services>
+</container>
