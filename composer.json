@@ -5,7 +5,7 @@
     "type": "symfony-bundle",
     "authors": [
         {
-            "name": "Leandro Santos",
+            "name": "Leandro Vital Catarin",
             "email": "leandro.santos@ima.sp.gov.br"
         }
     ],
@@ -31,6 +31,15 @@
         "psr-4": {
             "IMA\\Bundle\\keycloakBearerOnlyAdapterBundle\\Tests\\": "Tests"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php bin/console cache:clear",
+            "php vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
+        ],
+        "post-update-cmd": [
+            "php bin/console cache:clear",
+            "php vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
+        ]
     }
-
 }
