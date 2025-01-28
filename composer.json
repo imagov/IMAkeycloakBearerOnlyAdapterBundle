@@ -34,12 +34,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php bin/console cache:clear",
-            "php vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
+            "php ./vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
         ],
         "post-update-cmd": [
-            "php bin/console cache:clear",
-            "php vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
+            "php ./vendor/ima/keycloak-bearer-only-adapter-bundle/scripts/generate-config.php"
         ]
     }
 }

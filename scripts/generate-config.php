@@ -33,17 +33,13 @@ YAML;
 // Path to the .env file in the project directory
 $envFile = $projectRoot . '/.env';
 
-// Check if the .env file exists, create it if not
-if (!file_exists($envFile)) {
-    file_put_contents($envFile, "###> ima/keycloak-bearer-only-adapter-bundle ###\n", FILE_APPEND);
-    echo ".env file created.\n";
-}
-
 // Read the current .env content
-$envContent = file_get_contents($envFile);
+$envContent = file_exists($envFile) ? file_get_contents($envFile) : '';
+
 
 // Define the environment variables to be added
 $envVariables = [
+    "###> ima/keycloak-bearer-only-adapter-bundle ###",
     'OAUTH_KEYCLOAK_ISSUER=keycloak:8080',
     'OAUTH_KEYCLOAK_REALM=my_realm',
     'OAUTH_KEYCLOAK_CLIENT_ID=my_bearer_client',
@@ -53,16 +49,19 @@ $envVariables = [
 // Add variables to .env if they don't exist
 foreach ($envVariables as $variable) {
     if (strpos($envContent, $variable) === false) {
-        file_put_contents($envFile, "\n" . $variable, FILE_APPEND);
+        $envContent .= "\n" . $variable;
         echo "Added variable to .env: {$variable}\n";
     }
 }
 
-// Add closing comment to the .env file
+// Add the closing comment to the .env file
 $envFooter = "\n###< ima/keycloak-bearer-only-adapter-bundle ###";
 if (strpos($envContent, $envFooter) === false) {
-    file_put_contents($envFile, $envFooter, FILE_APPEND);
+    $envContent .= $envFooter; // Append the comment at the end of the file
     echo "Added closing comment to .env.\n";
 }
+
+// Save the updated content back to the .env file
+file_put_contents($envFile, $envContent);
 
 echo "Keycloak configuration and .env variables setup completed.\n";
