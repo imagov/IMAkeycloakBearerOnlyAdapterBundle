@@ -104,4 +104,4 @@ To configure keycloak to work with this bundle, [here](./Resources/docs/keycloak
 
 | Bundle Version                                        | Symfony Version    |
 | ------------------------------------------------------|--------------------|
-| V1.0.0                                                | >=7.0.0            |
+| V1.0.0                                                | >=6.4.0            |

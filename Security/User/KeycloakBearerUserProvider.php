@@ -135,4 +135,30 @@ class KeycloakBearerUserProvider implements UserProviderInterface{
     {
         return $this->loadUserByIdentifier($username);
     }
+
+    /**
+     * Retrieves user info from Keycloak using the userinfo endpoint.
+     *
+     * @param string $accessToken
+     * @return array
+     */
+    public function getUserInfo(string $accessToken): array
+    {
+        $httpClient = HttpClient::create(['base_uri' => $this->issuer]);
+
+        $response = $httpClient->request('GET', '/realms/'.$this->realm.'/protocol/openid-connect/userinfo', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken,
+            ],
+            'verify_peer' => $this->sslVerification,
+        ]);
+
+        $userInfo = json_decode($response->getContent(), true);
+
+        if (isset($userInfo['error'])) {
+            throw new CustomUserMessageAuthenticationException('Failed to retrieve user info: ' . $userInfo['error_description']);
+        }
+
+        return $userInfo;
+    }
 }

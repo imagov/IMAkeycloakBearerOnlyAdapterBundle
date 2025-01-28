@@ -11,12 +11,12 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=8.2",
-        "symfony/config": "^7.0",
-        "symfony/dependency-injection": "^7.0",
-        "symfony/http-client": "^7.0",
-        "symfony/http-kernel": "^7.0",
-        "symfony/security-bundle": "^7.0",
+        "php": ">=8.0",
+        "symfony/config": "^6.4.*",
+        "symfony/dependency-injection": "^6.4.*",
+        "symfony/http-client": "^6.4.*",
+        "symfony/http-kernel": "^6.4.*",
+        "symfony/security-bundle": "^6.4.*",
         "ext-json": "*"
     },
     "autoload": {
