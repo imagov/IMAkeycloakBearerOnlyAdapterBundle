@@ -58,4 +58,11 @@ foreach ($envVariables as $variable) {
     }
 }
 
+// Add closing comment to the .env file
+$envFooter = "\n###< ima/keycloak-bearer-only-adapter-bundle ###";
+if (strpos($envContent, $envFooter) === false) {
+    file_put_contents($envFile, $envFooter, FILE_APPEND);
+    echo "Added closing comment to .env.\n";
+}
+
 echo "Keycloak configuration and .env variables setup completed.\n";
